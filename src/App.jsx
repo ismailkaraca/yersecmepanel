@@ -1,6 +1,46 @@
 import React, { useState, useEffect } from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, PieChart, Pie, Cell, LineChart, Line } from 'recharts';
 
+
+/**
+ * Geliştirici imzasını ve logosunu gösteren, tıklandığında web sitesine yönlendiren bir React bileşeni.
+ * Bu bileşen ekranın sağ alt köşesinde sabit olarak konumlandırılmıştır.
+ */
+const DeveloperCredit = () => {
+  // Stil ve içerik için Tailwind CSS sınıfları kullanılmıştır.
+  return (
+    <a
+      href="https://www.ismailkaraca.com.tr/"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="fixed bottom-4 right-4 z-50 flex items-center p-3 bg-white/80 backdrop-blur-sm border border-gray-200 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 ease-in-out transform hover:-translate-y-1"
+      title='Frontend Prototype (Ön Yüz Prototipi) "İsmail Karaca" tarafından geliştirilmiştir.'
+    >
+      {/* Geliştirici Logosu */}
+      <img
+        src="https://www.ismailkaraca.com.tr/wp-content/uploads/2025/03/ismail1002025.svg"
+        alt="İsmail Karaca Logo"
+        className="w-10 h-10 mr-3 rounded-full object-cover"
+        // Resim yüklenemezse fallback gösterilir.
+        onError={(e) => {
+          e.target.onerror = null;
+          e.target.src = 'https://placehold.co/40x40/1e293b/ffffff?text=IK';
+          e.target.alt = 'İsmail Karaca Baş Harfleri';
+        }}
+      />
+      {/* Geliştirici Bilgi Metni */}
+      <div className="flex-col hidden sm:flex">
+         <span className="text-xs font-bold text-gray-800">
+          İsmail Karaca
+        </span>
+        <span className="text-xs text-gray-600">
+          Frontend Prototype
+        </span>
+      </div>
+    </a>
+  );
+};
+
 // --- SCRIPTS (Recharts for charts & QR Scanner) ---
 // This component ensures necessary libraries are loaded before rendering the components.
 const ScriptsLoader = ({ onReady }) => {
