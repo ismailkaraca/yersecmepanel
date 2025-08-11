@@ -52,6 +52,7 @@ const OccupancyCheckIcon = () => (<svg xmlns="http://www.w3.org/2000/svg" width=
 const QrCodeIcon = () => (<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="5" height="5" x="3" y="3" rx="1"/><rect width="5" height="5" x="16" y="3" rx="1"/><rect width="5" height="5" x="3" y="16" rx="1"/><path d="M21 16h-3a2 2 0 0 0-2 2v3"/><path d="M21 21v.01"/><path d="M12 7v3a2 2 0 0 1-2 2H7"/><path d="M3 12h.01"/><path d="M12 3h.01"/><path d="M12 16v.01"/><path d="M16 12h1"/><path d="M21 12v.01"/><path d="M12 21v-1"/></svg>);
 const XCircleIcon = ({className}) => (<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={className}><path strokeLinecap="round" strokeLinejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>);
 const CoffeeIcon = () => (<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M10 2v2"/><path d="M14 2v2"/><path d="M16 8a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V4h12v4Z"/><path d="M6 22h8a4 4 0 0 0 4-4v-4a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v4a4 4 0 0 0 4 4Z"/><path d="M18 14h2a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2h-2"/></svg>);
+const ExternalLinkIcon = () => (<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" x2="21" y1="14" y2="3"/></svg>);
 
 
 // --- MOCK DATA ---
@@ -1826,7 +1827,16 @@ const AdminDashboardApp = () => {
                             }[currentView] || 'Yönetim Paneli'
                         }</h2>
                     </div>
-                    <div className="flex items-center gap-4">
+                    <div className="flex items-center gap-6">
+                         <a 
+                            href="https://kutuphaneveteknoloji.com/yersecme.html" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-2 px-3 py-2 text-sm font-semibold text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors"
+                        >
+                            <span>Kullanıcı Arayüzü Demosu</span>
+                            <ExternalLinkIcon />
+                        </a>
                         <div className="flex items-center gap-2">
                             <label htmlFor="emergency-toggle" className="text-sm font-medium text-gray-600">Acil Durum (Çevrimdışı) Modu</label>
                             <button onClick={() => setEmergencyMode(!isEmergencyMode)} className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${isEmergencyMode ? 'bg-red-600' : 'bg-gray-200'}`}>
