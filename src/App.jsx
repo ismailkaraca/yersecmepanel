@@ -1887,7 +1887,7 @@ const AdminDashboardApp = () => {
                     Bu Frontend Prototype (Ön Yüz Prototipi) "İsmail Karaca" tarafından geliştirilmiştir.
                 </span>
                  <span className="font-medium sm:hidden">
-                    İsmail Karaca
+                    Bu Frontend Prototype (Ön Yüz Prototipi) "İsmail Karaca" tarafından geliştirilmiştir.
                 </span>
             </a>
         </div>
