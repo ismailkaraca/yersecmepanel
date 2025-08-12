@@ -53,6 +53,8 @@ const QrCodeIcon = () => (<svg xmlns="http://www.w3.org/2000/svg" width="24" hei
 const XCircleIcon = ({className}) => (<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={className}><path strokeLinecap="round" strokeLinejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>);
 const CoffeeIcon = () => (<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M10 2v2"/><path d="M14 2v2"/><path d="M16 8a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V4h12v4Z"/><path d="M6 22h8a4 4 0 0 0 4-4v-4a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v4a4 4 0 0 0 4 4Z"/><path d="M18 14h2a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2h-2"/></svg>);
 const ExternalLinkIcon = () => (<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" x2="21" y1="14" y2="3"/></svg>);
+const MenuIcon = () => (<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="3" x2="21" y1="12" y2="12"/><line x1="3" x2="21" y1="6" y2="6"/><line x1="3" x2="21" y1="18" y2="18"/></svg>);
+const XIcon = () => (<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" x2="6" y1="6" y2="18"/><line x1="6" x2="18" y1="6" y2="18"/></svg>);
 
 
 // --- MOCK DATA ---
@@ -1085,7 +1087,7 @@ const OccupancyCheckPage = ({ onBack, onAction, settingsData }) => {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             <div className="lg:col-span-2 bg-white p-6 rounded-2xl shadow-sm">
                  <h3 className="font-bold text-xl text-gray-800 mb-4">Sessiz Salon - Kat Planı</h3>
-                 <div className="grid grid-cols-6 gap-4">
+                 <div className="grid grid-cols-3 sm:grid-cols-6 gap-4">
                     {desks.map(desk => (
                         <button 
                             key={desk.id} 
@@ -1180,7 +1182,7 @@ const VerificationPage = ({ onBack, onAction, isReady }) => {
     };
 
     return (
-        <div className="bg-white p-6 rounded-2xl shadow-sm max-w-4xl mx-auto">
+        <div className="bg-white p-4 sm:p-6 rounded-2xl shadow-sm w-full max-w-4xl mx-auto">
             <h3 className="font-bold text-xl text-gray-800 mb-2">QR Kod ile İşlem Yap</h3>
             <div className="mb-6 bg-gray-50 p-4 rounded-lg border">
                 <h4 className="font-semibold text-gray-700">Bu ekrandan aşağıdaki işlemleri gerçekleştirebilirsiniz:</h4>
@@ -1198,7 +1200,7 @@ const VerificationPage = ({ onBack, onAction, isReady }) => {
                     <button 
                         onClick={handleScan}
                         disabled={!isReady}
-                        className="inline-flex items-center gap-3 px-8 py-4 bg-red-600 text-white rounded-lg font-semibold hover:bg-red-700 transition-colors disabled:bg-gray-300"
+                        className="inline-flex items-center gap-3 px-6 py-3 sm:px-8 sm:py-4 bg-red-600 text-white rounded-lg font-semibold hover:bg-red-700 transition-colors disabled:bg-gray-300"
                     >
                         <QrCodeIcon />
                         {isReady ? 'QR Kodu Tara' : 'Tarayıcı Yükleniyor...'}
@@ -1222,15 +1224,15 @@ const VerificationPage = ({ onBack, onAction, isReady }) => {
             {scanResult && (
                 <div className="py-8">
                     {scanResult.success ? (
-                        <div className="bg-green-50 border-l-4 border-green-500 p-6 rounded-r-lg">
-                            <div className="flex items-center gap-4">
-                                <CheckCircleIcon className="w-12 h-12 text-green-500" />
-                                <div>
+                        <div className="bg-green-50 border-l-4 border-green-500 p-4 sm:p-6 rounded-r-lg">
+                            <div className="flex flex-col sm:flex-row items-center gap-4">
+                                <CheckCircleIcon className="w-12 h-12 text-green-500 flex-shrink-0" />
+                                <div className="text-center sm:text-left">
                                     <h4 className="text-lg font-bold text-green-800">Doğrulama Başarılı</h4>
                                     <p className="text-green-700">Kullanıcı işlemi onaylandı.</p>
                                 </div>
                             </div>
-                            <div className="mt-4 pl-16 space-y-2 text-sm text-gray-700">
+                            <div className="mt-4 sm:pl-16 space-y-2 text-sm text-gray-700">
                                 <p><span className="font-semibold">Üye:</span> {scanResult.data.user}</p>
                                 <p><span className="font-semibold">Tür:</span> {getResultDetails(scanResult.data).title}</p>
                                 <p><span className="font-semibold">Detay:</span> {getResultDetails(scanResult.data).details}</p>
@@ -1238,10 +1240,10 @@ const VerificationPage = ({ onBack, onAction, isReady }) => {
                             </div>
                         </div>
                     ) : (
-                         <div className="bg-red-50 border-l-4 border-red-500 p-6 rounded-r-lg">
-                            <div className="flex items-center gap-4">
-                                <XCircleIcon className="w-12 h-12 text-red-500" />
-                                <div>
+                         <div className="bg-red-50 border-l-4 border-red-500 p-4 sm:p-6 rounded-r-lg">
+                            <div className="flex flex-col sm:flex-row items-center gap-4">
+                                <XCircleIcon className="w-12 h-12 text-red-500 flex-shrink-0" />
+                                <div className="text-center sm:text-left">
                                     <h4 className="text-lg font-bold text-red-800">Doğrulama Başarısız</h4>
                                     <p className="text-red-700">{scanResult.message}</p>
                                 </div>
@@ -1568,6 +1570,7 @@ const BreakManagementPage = ({ onBack, onAction, settingsData, setSettingsData, 
 
 const AdminDashboardApp = () => {
     const [isEmergencyMode, setEmergencyMode] = useState(false);
+    const [isSidebarOpen, setSidebarOpen] = useState(false);
     const [activeTab, setActiveTab] = useState('gri-liste');
     const [isModalOpen, setModalOpen] = useState(false);
     const [isReady, setIsReady] = useState(false);
@@ -1787,30 +1790,39 @@ const AdminDashboardApp = () => {
                  />
             </Modal>
 
+            {/* Mobile Sidebar Overlay */}
+            {isSidebarOpen && <div onClick={() => setSidebarOpen(false)} className="fixed inset-0 bg-black bg-opacity-50 z-30 lg:hidden"></div>}
+
             {/* Sol Navigasyon Menüsü */}
-            <aside className="w-64 bg-white flex-shrink-0 flex flex-col border-r">
-                <div className="h-16 flex items-center justify-center border-b">
+            <aside className={`fixed inset-y-0 left-0 z-40 w-64 bg-white flex-shrink-0 flex-col border-r transform ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'} lg:relative lg:translate-x-0 transition-transform duration-200 ease-in-out`}>
+                <div className="h-16 flex items-center justify-between px-4 border-b">
                     <h1 className="text-xl font-bold text-gray-800">Yönetim Paneli</h1>
+                    <button onClick={() => setSidebarOpen(false)} className="lg:hidden text-gray-500 hover:text-gray-700">
+                        <XIcon />
+                    </button>
                 </div>
                 <nav className="flex-grow p-4">
                     <ul className="space-y-2">
-                        <li><a href="#" onClick={(e) => { e.preventDefault(); setCurrentView('dashboard'); }} className={`flex items-center gap-3 p-3 rounded-lg ${currentView === 'dashboard' ? 'bg-red-50 text-red-700 font-semibold' : 'text-gray-600 hover:bg-gray-100'}`}><DashboardIcon /> Anasayfa</a></li>
-                        <li><a href="#" onClick={(e) => { e.preventDefault(); setCurrentView('verification'); }} className={`flex items-center gap-3 p-3 rounded-lg ${currentView === 'verification' ? 'bg-red-50 text-red-700 font-semibold' : 'text-gray-600 hover:bg-gray-100'}`}><QrCodeIcon /> QR İşlemleri</a></li>
-                        <li><a href="#" onClick={(e) => { e.preventDefault(); setCurrentView('occupancyCheck'); }} className={`flex items-center gap-3 p-3 rounded-lg ${currentView === 'occupancyCheck' ? 'bg-red-50 text-red-700 font-semibold' : 'text-gray-600 hover:bg-gray-100'}`}><OccupancyCheckIcon /> Varlık Kontrolü</a></li>
-                        <li><a href="#" onClick={(e) => { e.preventDefault(); setCurrentView('breakManagement'); }} className={`flex items-center gap-3 p-3 rounded-lg ${currentView === 'breakManagement' ? 'bg-red-50 text-red-700 font-semibold' : 'text-gray-600 hover:bg-gray-100'}`}><CoffeeIcon /> Mola Yönetimi</a></li>
-                        <li><a href="#" onClick={(e) => { e.preventDefault(); setCurrentView('reservationManagement'); }} className={`flex items-center gap-3 p-3 rounded-lg ${currentView === 'reservationManagement' ? 'bg-red-50 text-red-700 font-semibold' : 'text-gray-600 hover:bg-gray-100'}`}><CalendarIcon /> Rezervasyon Yönetimi</a></li>
-                        <li><a href="#" onClick={(e) => { e.preventDefault(); setCurrentView('eventManagement'); }} className={`flex items-center gap-3 p-3 rounded-lg ${currentView === 'eventManagement' ? 'bg-red-50 text-red-700 font-semibold' : 'text-gray-600 hover:bg-gray-100'}`}><TicketIcon /> Etkinlik Yönetimi</a></li>
-                        <li><a href="#" onClick={(e) => { e.preventDefault(); setCurrentView('userManagement'); }} className={`flex items-center gap-3 p-3 rounded-lg ${currentView === 'userManagement' ? 'bg-red-50 text-red-700 font-semibold' : 'text-gray-600 hover:bg-gray-100'}`}><UsersIcon /> Kullanıcı Yönetimi</a></li>
-                        <li><a href="#" onClick={(e) => { e.preventDefault(); setCurrentView('reporting'); }} className={`flex items-center gap-3 p-3 rounded-lg ${currentView === 'reporting' ? 'bg-red-50 text-red-700 font-semibold' : 'text-gray-600 hover:bg-gray-100'}`}><ChartIcon /> Raporlama</a></li>
-                        <li><a href="#" onClick={(e) => { e.preventDefault(); setCurrentView('settings'); }} className={`flex items-center gap-3 p-3 rounded-lg ${currentView === 'settings' ? 'bg-red-50 text-red-700 font-semibold' : 'text-gray-600 hover:bg-gray-100'}`}><SettingsIcon /> Sistem Ayarları</a></li>
+                        <li><a href="#" onClick={(e) => { e.preventDefault(); setCurrentView('dashboard'); setSidebarOpen(false); }} className={`flex items-center gap-3 p-3 rounded-lg ${currentView === 'dashboard' ? 'bg-red-50 text-red-700 font-semibold' : 'text-gray-600 hover:bg-gray-100'}`}><DashboardIcon /> Anasayfa</a></li>
+                        <li><a href="#" onClick={(e) => { e.preventDefault(); setCurrentView('verification'); setSidebarOpen(false); }} className={`flex items-center gap-3 p-3 rounded-lg ${currentView === 'verification' ? 'bg-red-50 text-red-700 font-semibold' : 'text-gray-600 hover:bg-gray-100'}`}><QrCodeIcon /> QR İşlemleri</a></li>
+                        <li><a href="#" onClick={(e) => { e.preventDefault(); setCurrentView('occupancyCheck'); setSidebarOpen(false); }} className={`flex items-center gap-3 p-3 rounded-lg ${currentView === 'occupancyCheck' ? 'bg-red-50 text-red-700 font-semibold' : 'text-gray-600 hover:bg-gray-100'}`}><OccupancyCheckIcon /> Varlık Kontrolü</a></li>
+                        <li><a href="#" onClick={(e) => { e.preventDefault(); setCurrentView('breakManagement'); setSidebarOpen(false); }} className={`flex items-center gap-3 p-3 rounded-lg ${currentView === 'breakManagement' ? 'bg-red-50 text-red-700 font-semibold' : 'text-gray-600 hover:bg-gray-100'}`}><CoffeeIcon /> Mola Yönetimi</a></li>
+                        <li><a href="#" onClick={(e) => { e.preventDefault(); setCurrentView('reservationManagement'); setSidebarOpen(false); }} className={`flex items-center gap-3 p-3 rounded-lg ${currentView === 'reservationManagement' ? 'bg-red-50 text-red-700 font-semibold' : 'text-gray-600 hover:bg-gray-100'}`}><CalendarIcon /> Rezervasyon Yönetimi</a></li>
+                        <li><a href="#" onClick={(e) => { e.preventDefault(); setCurrentView('eventManagement'); setSidebarOpen(false); }} className={`flex items-center gap-3 p-3 rounded-lg ${currentView === 'eventManagement' ? 'bg-red-50 text-red-700 font-semibold' : 'text-gray-600 hover:bg-gray-100'}`}><TicketIcon /> Etkinlik Yönetimi</a></li>
+                        <li><a href="#" onClick={(e) => { e.preventDefault(); setCurrentView('userManagement'); setSidebarOpen(false); }} className={`flex items-center gap-3 p-3 rounded-lg ${currentView === 'userManagement' ? 'bg-red-50 text-red-700 font-semibold' : 'text-gray-600 hover:bg-gray-100'}`}><UsersIcon /> Kullanıcı Yönetimi</a></li>
+                        <li><a href="#" onClick={(e) => { e.preventDefault(); setCurrentView('reporting'); setSidebarOpen(false); }} className={`flex items-center gap-3 p-3 rounded-lg ${currentView === 'reporting' ? 'bg-red-50 text-red-700 font-semibold' : 'text-gray-600 hover:bg-gray-100'}`}><ChartIcon /> Raporlama</a></li>
+                        <li><a href="#" onClick={(e) => { e.preventDefault(); setCurrentView('settings'); setSidebarOpen(false); }} className={`flex items-center gap-3 p-3 rounded-lg ${currentView === 'settings' ? 'bg-red-50 text-red-700 font-semibold' : 'text-gray-600 hover:bg-gray-100'}`}><SettingsIcon /> Sistem Ayarları</a></li>
                     </ul>
                 </nav>
             </aside>
 
             <div className="flex-1 flex flex-col overflow-hidden">
                 {/* Üst Başlık */}
-                <header className="h-16 bg-white border-b flex items-center justify-between px-6">
-                    <div>
+                <header className="h-16 bg-white border-b flex items-center justify-between px-4 sm:px-6">
+                    <div className="flex items-center">
+                         <button onClick={() => setSidebarOpen(true)} className="lg:hidden mr-4 text-gray-600 hover:text-gray-800">
+                            <MenuIcon />
+                        </button>
                         <h2 className="text-lg font-semibold text-gray-700">{
                             {
                                 'dashboard': 'Anasayfa',
@@ -1827,18 +1839,18 @@ const AdminDashboardApp = () => {
                             }[currentView] || 'Yönetim Paneli'
                         }</h2>
                     </div>
-                    <div className="flex items-center gap-6">
+                    <div className="flex items-center gap-2 sm:gap-6">
                          <a 
                             href="https://kutuphaneveteknoloji.com/yersecme.html" 
                             target="_blank" 
                             rel="noopener noreferrer"
-                            className="flex items-center gap-2 px-3 py-2 text-sm font-semibold text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors"
+                            className="hidden sm:flex items-center gap-2 px-3 py-2 text-sm font-semibold text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors"
                         >
                             <span>Kullanıcı Arayüzü Demosu</span>
                             <ExternalLinkIcon />
                         </a>
-                        <div className="flex items-center gap-2">
-                            <label htmlFor="emergency-toggle" className="text-sm font-medium text-gray-600">Acil Durum (Çevrimdışı) Modu</label>
+                        <div className="hidden md:flex items-center gap-2">
+                            <label htmlFor="emergency-toggle" className="text-sm font-medium text-gray-600">Acil Durum Modu</label>
                             <button onClick={() => setEmergencyMode(!isEmergencyMode)} className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${isEmergencyMode ? 'bg-red-600' : 'bg-gray-200'}`}>
                                 <span className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${isEmergencyMode ? 'translate-x-6' : 'translate-x-1'}`} />
                             </button>
@@ -1846,7 +1858,7 @@ const AdminDashboardApp = () => {
                         <button className="text-gray-500 hover:text-gray-700"><BellIcon /></button>
                         <div className="flex items-center gap-3">
                             <img className="h-9 w-9 rounded-full object-cover" src="https://placehold.co/40x40/d32f2f/ffffff?text=A" alt="Profil Resmi" />
-                            <div>
+                            <div className="hidden sm:block">
                                 <p className="text-sm font-semibold text-gray-800">Ayşe Yılmaz</p>
                                 <p className="text-xs text-gray-500">Yönetici</p>
                             </div>
@@ -1855,7 +1867,7 @@ const AdminDashboardApp = () => {
                 </header>
 
                 {/* Ana İçerik Alanı */}
-                <main className="flex-1 overflow-x-hidden overflow-y-auto bg-gray-100 p-6">
+                <main className="flex-1 overflow-x-hidden overflow-y-auto bg-gray-100 p-4 sm:p-6">
                     {renderContent()}
                 </main>
             </div>
@@ -1871,8 +1883,11 @@ const AdminDashboardApp = () => {
                     alt="İsmail Karaca Logo"
                     className="h-8 w-8 rounded-full"
                 />
-                <span className="font-medium">
+                <span className="font-medium hidden sm:inline">
                     Bu Frontend Prototype (Ön Yüz Prototipi) "İsmail Karaca" tarafından geliştirilmiştir.
+                </span>
+                 <span className="font-medium sm:hidden">
+                    İsmail Karaca
                 </span>
             </a>
         </div>
